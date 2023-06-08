@@ -45,10 +45,17 @@ function App() {
     setData([newItem, ...data]); //새로운 일기가 제일 위로 오게끔
   };
 
+  const onDelete = (targetId) => {
+    console.log(`${targetId}가 삭제되었습니다.`);
+    const newDiaryList = data.filter((it) => it.id !== targetId);
+    console.log(newDiaryList);
+    setData(newDiaryList);
+  };
+
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} /> {/* prop으로 전달 */}
-      <DiaryList diaryList={data} /> {/* prop으로 전달 */}
+      <DiaryList diaryList={data} onDelete={onDelete} /> {/* prop으로 전달 */}
     </div>
   );
 }
